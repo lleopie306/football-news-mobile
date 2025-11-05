@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:football_news/screens/newslist_form.dart';
+import 'package:football_news/widgets/left_drawer.dart';
+
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
+
 
   final String nama = "Deslee Jever Phillipa"; //nama
   final String npm = "2406433560"; //npm
@@ -15,6 +19,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Scaffold menyediakan struktur dasar halaman dengan AppBar dan body.
     return Scaffold(
       // AppBar adalah bagian atas halaman yang menampilkan judul.
       appBar: AppBar(
@@ -29,6 +34,7 @@ class MyHomePage extends StatelessWidget {
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,7 +51,6 @@ class MyHomePage extends StatelessWidget {
                 InfoCard(title: 'Class', content: kelas),
               ],
             ),
-
 
             // Memberikan jarak vertikal 16 unit.
             const SizedBox(height: 16.0),
@@ -157,6 +162,10 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(
                 SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
             );
+          if (item.name == "Tambah Berita") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const NewsFormPage()));
+          }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(
